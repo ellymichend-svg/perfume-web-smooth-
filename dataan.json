@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "The Gentleman",
+    "category": "Elegant",
+    "price": "$49",
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f"
+  },
+  {
+    "id": 2,
+    "name": "Aurora Sky",
+    "category": "Strong",
+    "price": "$29",
+    "image": "https://images.unsplash.com/photo-1547887557-c602fa998a4d"
+  },
+  {
+    "id": 3,
+    "name": "Minimalist Lake",
+    "category": "Fresh",
+    "price": "Free",
+    "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
+  },
+  {
+    "id": 4,
+    "name": "The Gentleman",
+    "category": "Elegant",
+    "price": "$49",
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f"
+  },
+  {
+    "id": 5,
+    "name": "Aurora Sky",
+    "category": "Strong",
+    "price": "$29",
+    "image": "https://images.unsplash.com/photo-1547887557-c602fa998a4d"
+  },
+  {
+    "id": 6,
+    "name": "Minimalist Lake",
+    "category": "Fresh",
+    "price": "Free",
+    "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
+  },
+  {
+    "id": 7,
+    "name": "The Gentleman",
+    "category": "Elegant",
+    "price": "$49",
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f"
+  },
+  {
+    "id": 8,
+    "name": "Aurora Sky",
+    "category": "Strong",
+    "price": "$29",
+    "image": "https://images.unsplash.com/photo-1547887557-c602fa998a4d"
+  },
+  {
+    "id": 9,
+    "name": "Minimalist Lake",
+    "category": "Fresh",
+    "price": "Free",
+    "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
+  }
+]
