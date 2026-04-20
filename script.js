@@ -111,5 +111,17 @@ function changePage(direction) {
     renderPage(currentPage);
 }
 
+// Fungsi Filter Kategori (Nanti akan terhubung ke API)
+function filterCategory(category) {
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.classList.remove('hidden-item');
+        } else {
+            card.classList.add('hidden-item');
+        }
+    });
+}
+
 // Jalankan saat pertama kali dimuat
 loadProducts();
