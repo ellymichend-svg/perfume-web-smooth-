@@ -111,17 +111,66 @@ function changePage(direction) {
     renderPage(currentPage);
 }
 
-// Fungsi Filter Kategori (Nanti akan terhubung ke API)
+// Variabel global untuk menyimpan kategori yang sedang dipilih
+let currentCategory = 'all';
+
 function filterCategory(category) {
-    const cards = document.querySelectorAll('.product-card');
-    cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.classList.remove('hidden-item');
+    currentCategory = category; // Simpan kategori yang dipilih
+    currentPage = 1; // Reset ke halaman pertama setiap kali ganti kategori
+    
+    // Update tampilan tombol filter agar terlihat aktif
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+        // Sesuaikan pengecekan teks tombol Anda (misal: "Fresh", "Strong", dll)
+        if (btn.innerText.toLowerCase().includes(category.toLowerCase()) || 
+           (category === 'all' && btn.innerText.includes('All'))) {
+            btn.classList.replace('bg-gray-100', 'bg-black');
+            btn.classList.replace('text-gray-600', 'text-white');
         } else {
-            card.classList.add('hidden-item');
+            btn.classList.replace('bg-black', 'bg-gray-100');
+            btn.classList.replace('text-white', 'text-gray-600');
         }
     });
+
+    // Jalankan ulang fungsi render dengan data yang sudah difilter
+    renderPage(currentPage);
 }
 
+// Update fungsi renderPage Anda agar mendukung filter
+function renderPage(page) {
+    const grid = document.getElementById('product-grid');
+    
+    // FILTER DATA TERLEBIH DAHULU
+    const filteredItems = allProducts.filter(item => 
+        currentCategory === 'all' || item.category.toLowerCase() === currentCategory.toLowerCase()
+    );
+
+    grid.style.opacity = '0';
+
+    setTimeout(() => {
+        grid.innerHTML = '';
+        
+        // Gunakan filteredItems untuk pagination, bukan allProducts
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedItems = filteredItems.slice(start, end);
+
+        if (paginatedItems.length === 0) {
+            grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-20">Tidak ada parfum di kategori ini.</p>`;
+        }
+
+        paginatedItems.forEach(item => {
+            // ... (Kode pembuatan kartu produk Anda tetap sama)
+            grid.innerHTML += `
+                <div class="product-card bento-card group cursor-pointer" data-category="${item.category}">
+                    </div>
+            `;
+        });
+        
+        grid.style.opacity = '1';
+        // Kirim jumlah filteredItems agar tombol angka menyesuaikan
+        updatePaginationButtons(filteredItems.length);
+    }, 300);
+}
 // Jalankan saat pertama kali dimuat
 loadProducts();
