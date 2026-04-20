@@ -35,18 +35,31 @@ async function loadProducts() {
 }
 
 // 2. Fungsi untuk memotong data & menampilkan ke grid
+// SATU fungsi untuk menangani semuanya: Filter dan Pagination
 function renderPage(page) {
     const grid = document.getElementById('product-grid');
-    grid.style.opacity = '0'; // Efek animasi keluar
+    
+    // 1. FILTER: Saring data berdasarkan kategori yang dipilih
+    const filteredItems = allProducts.filter(item => 
+        currentCategory === 'all' || item.category.toLowerCase() === currentCategory.toLowerCase()
+    );
+
+    grid.style.opacity = '0'; // Animasi keluar
 
     setTimeout(() => {
         grid.innerHTML = '';
         
-        // Logika memotong array produk
+        // 2. PAGINATION: Potong data yang sudah difilter tadi
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-        const paginatedItems = allProducts.slice(start, end);
+        const paginatedItems = filteredItems.slice(start, end);
 
+        // Tampilkan pesan jika kosong
+        if (paginatedItems.length === 0) {
+            grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-20">Produk tidak ditemukan.</p>`;
+        }
+
+        // 3. RENDER: Masukkan produk ke dalam HTML
         paginatedItems.forEach(item => {
             grid.innerHTML += `
                 <div class="product-card bento-card group cursor-pointer">
@@ -73,8 +86,10 @@ function renderPage(page) {
             `;
         });
         
-        grid.style.opacity = '1'; // Efek animasi masuk
-        updatePaginationButtons();
+        grid.style.opacity = '1'; // Animasi masuk
+        
+        // 4. UPDATE UI: Update tombol angka berdasarkan jumlah data yang difilter
+        updatePaginationButtons(filteredItems.length);
     }, 300);
 }
 
@@ -136,41 +151,5 @@ function filterCategory(category) {
     renderPage(currentPage);
 }
 
-// Update fungsi renderPage Anda agar mendukung filter
-function renderPage(page) {
-    const grid = document.getElementById('product-grid');
-    
-    // FILTER DATA TERLEBIH DAHULU
-    const filteredItems = allProducts.filter(item => 
-        currentCategory === 'all' || item.category.toLowerCase() === currentCategory.toLowerCase()
-    );
-
-    grid.style.opacity = '0';
-
-    setTimeout(() => {
-        grid.innerHTML = '';
-        
-        // Gunakan filteredItems untuk pagination, bukan allProducts
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const paginatedItems = filteredItems.slice(start, end);
-
-        if (paginatedItems.length === 0) {
-            grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-20">Tidak ada parfum di kategori ini.</p>`;
-        }
-
-        paginatedItems.forEach(item => {
-            // ... (Kode pembuatan kartu produk Anda tetap sama)
-            grid.innerHTML += `
-                <div class="product-card bento-card group cursor-pointer" data-category="${item.category}">
-                    </div>
-            `;
-        });
-        
-        grid.style.opacity = '1';
-        // Kirim jumlah filteredItems agar tombol angka menyesuaikan
-        updatePaginationButtons(filteredItems.length);
-    }, 300);
-}
 // Jalankan saat pertama kali dimuat
 loadProducts();
