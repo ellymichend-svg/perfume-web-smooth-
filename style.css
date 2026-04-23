@@ -53,6 +53,23 @@ button:hover svg {
     transform: scale(1.1);
 }
 
+/* Ukuran kartu produk yang lebih compact */
+.product-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card h3 {
+    font-size: 1.125rem; /* Ukuran teks judul lebih kecil */
+    line-height: 1.5rem;
+}
+
+/* Memastikan grid transisi halus */
 #product-grid {
     transition: opacity 0.3s ease-in-out;
+}
+
+/* Style untuk tombol filter yang aktif (opsional jika ingin tambahan style) */
+.filter-btn.active {
+    background-color: black !important;
+    color: white !important;
 }
