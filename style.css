@@ -73,3 +73,23 @@ button:hover svg {
     background-color: black !important;
     color: white !important;
 }
+
+.product-image-container {
+    aspect-ratio: 4 / 3; /* Mengunci rasio gambar agar seragam */
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar tidak gepeng tapi tetap penuh */
+}
+
+.product-info-area {
+    min-height: 80px; /* Sesuaikan angka ini agar cukup untuk 2 baris teks */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
