@@ -63,17 +63,17 @@ function renderPage(page) {
         // 3. RENDER: Masukkan produk ke dalam HTML
         paginatedItems.forEach(item => {
             grid.innerHTML += `
-               <div class="product-card bento-card group cursor-pointer">
+               <div class="product-card bento-card group h-full">
                     <div class="bg-[#F3F4F6] rounded-[32px] p-2 overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-2xl transition-all duration-500">
                         <div class="aspect-[4/3] rounded-[24px] overflow-hidden">
                             <img src="${item.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <div class="p-6 flex justify-between items-end">
+                        <div class="p-6 flex-grow flex flex-col justify-between">
                             <div>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">${item.category}</p>
                                 <h3 class="text-xl font-bold tracking-tight">${item.name}</h3>
                             </div>
-                            <div class="text-right">
+                            <div class="flex justify-between items-center">
                                 <p class="text-sm font-bold mb-2">${item.price}</p>
                                 <a href="data.html?id=${item.id}" class="inline-block bg-black text-white p-3 rounded-2xl hover:bg-gray-800 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
