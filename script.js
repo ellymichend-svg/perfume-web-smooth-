@@ -21,6 +21,7 @@ function toggleMenu() {
 
 let allProducts = [];
 let currentPage = 1;
+let currentCategory = 'all';
 const itemsPerPage = 3; // Jumlah produk per halaman
 
 // 1. Ambil data dari API/JSON
@@ -126,9 +127,6 @@ function changePage(direction) {
     renderPage(currentPage);
 }
 
-// Variabel global untuk menyimpan kategori yang sedang dipilih
-let currentCategory = 'all';
-
 function filterCategory(category) {
     currentCategory = category; // Simpan kategori yang dipilih
     currentPage = 1; // Reset ke halaman pertama setiap kali ganti kategori
@@ -136,18 +134,20 @@ function filterCategory(category) {
     // Update tampilan tombol filter agar terlihat aktif
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => {
-        // Sesuaikan pengecekan teks tombol Anda (misal: "Fresh", "Strong", dll)
-        if (btn.innerText.toLowerCase().includes(category.toLowerCase()) || 
-           (category === 'all' && btn.innerText.includes('All'))) {
-            btn.classList.replace('bg-gray-100', 'bg-black');
-            btn.classList.replace('text-gray-600', 'text-white');
+        // Kita bandingkan kategori yang diklik dengan teks di tombol
+        // (Pastikan teks tombol di HTML sesuai, misal: "All", "Elegant", "Fresh")
+        const btnText = btn.innerText.toLowerCase();
+        const targetCategory = category.toLowerCase();
+
+        if (btnText === targetCategory || (targetCategory === 'all' && btnText === 'all')) {
+            btn.classList.remove('bg-gray-100', 'text-gray-600');
+            btn.classList.add('bg-black', 'text-white');
         } else {
-            btn.classList.replace('bg-black', 'bg-gray-100');
-            btn.classList.replace('text-white', 'text-gray-600');
+            btn.classList.remove('bg-black', 'text-white');
+            btn.classList.add('bg-gray-100', 'text-gray-600');
         }
     });
 
-    // Jalankan ulang fungsi render dengan data yang sudah difilter
     renderPage(currentPage);
 }
 
