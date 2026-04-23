@@ -93,3 +93,32 @@ button:hover svg {
     justify-content: space-between;
     align-items: flex-end;
 }
+
+/* Kunci aspek rasio gambar agar semua sama (4:3) */
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Penting: gambar tidak akan gepeng */
+}
+
+/* Kunci tinggi minimal area teks agar kartu tidak pendek saat judulnya singkat */
+.product-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 120px; /* Angka ini bisa kamu sesuaikan */
+}
+
+/* Pastikan grid memiliki tinggi yang sama per baris */
+#product-grid {
+    display: grid;
+    align-items: stretch;
+}
