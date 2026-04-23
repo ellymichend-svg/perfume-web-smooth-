@@ -51,13 +51,13 @@
         </p>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-wrap gap-2 justify-center">
-        <button onclick="filterCategory('all')" class="px-5 py-2 rounded-full bg-black text-white text-sm font-medium">All Assets</button>
-        <button onclick="filterCategory('Elegant')" class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium hover:bg-gray-200 transition-all">Elegant</button>
-        <button onclick="filterCategory('Strong')" class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium hover:bg-gray-200 transition-all">Strong</button>
-        <button onclick="filterCategory('Fresh')" class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium hover:bg-gray-200 transition-all">Fresh</button>
+    <div class="flex flex-wrap gap-3 mb-12 justify-center">
+        <button onclick="filterCategory('all')" class="filter-btn bg-black text-white px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all">All</button>
+        <button onclick="filterCategory('Elegant')" class="filter-btn bg-gray-100 text-gray-600 px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all">Elegant</button>
+        <button onclick="filterCategory('Fresh')" class="filter-btn bg-gray-100 text-gray-600 px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all">Fresh</button>
+        <button onclick="filterCategory('Strong')" class="filter-btn bg-gray-100 text-gray-600 px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all">Strong</button>
     </div>
-
+    
     <main class="max-w-7xl mx-auto px-6 pb-24 flex-grow">
         <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             </div>
