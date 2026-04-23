@@ -62,4 +62,32 @@
     "price": "$44",
     "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
   }
+  {
+    "id": 8,
+    "name": "Aurora Sky",
+    "category": "Strong",
+    "price": "$29",
+    "image": "https://images.unsplash.com/photo-1547887557-c602fa998a4d"
+  },
+  {
+    "id": 9,
+    "name": "Minimalist Lake",
+    "category": "Fresh",
+    "price": "$44",
+    "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
+  }
+  {
+    "id": 8,
+    "name": "Aurora Sky",
+    "category": "Strong",
+    "price": "$29",
+    "image": "https://images.unsplash.com/photo-1547887557-c602fa998a4d"
+  },
+  {
+    "id": 9,
+    "name": "Minimalist Lake",
+    "category": "Fresh",
+    "price": "$44",
+    "image": "https://images.unsplash.com/photo-1615162460144-6a687796a56e"
+  }
 ]
