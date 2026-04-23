@@ -22,7 +22,7 @@ function toggleMenu() {
 let allProducts = [];
 let currentPage = 1;
 let currentCategory = 'all';
-const itemsPerPage = 3; // Jumlah produk per halaman
+const itemsPerPage = 9; // Jumlah produk per halaman
 
 // 1. Ambil data dari API/JSON
 async function loadProducts() {
