@@ -36,42 +36,34 @@ async function loadProducts() {
 }
 
 // 2. Fungsi untuk memotong data & menampilkan ke grid
-// SATU fungsi untuk menangani semuanya: Filter dan Pagination
 function renderPage(page) {
     const grid = document.getElementById('product-grid');
     
-    // 1. FILTER: Saring data berdasarkan kategori yang dipilih
     const filteredItems = allProducts.filter(item => 
         currentCategory === 'all' || item.category.toLowerCase() === currentCategory.toLowerCase()
     );
-
-    grid.style.opacity = '0'; // Animasi keluar
+    grid.style.opacity = '0'; // Efek animasi keluar
 
     setTimeout(() => {
         grid.innerHTML = '';
         
-        // 2. PAGINATION: Potong data yang sudah difilter tadi
+        // Logika memotong array produk
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const paginatedItems = filteredItems.slice(start, end);
 
-        // Tampilkan pesan jika kosong
-        if (paginatedItems.length === 0) {
-            grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-20">Produk tidak ditemukan.</p>`;
-        }
-
-        // 3. RENDER: Masukkan produk ke dalam HTML
         paginatedItems.forEach(item => {
             grid.innerHTML += `
-               <div class="product-card bento-card group h-full">
-                    <div class="bg-[#F3F4F6] rounded-[32px] p-2 overflow-hidden border border-transparent hover:border-gray-200 hover:shadow-2xl transition-all duration-500">
-                        <div class="produk-image-wrapper">
-                            <img src="${item.image}" alt="${item.name}" class="group-hover:scale-110 transition-transform duration-700">
+                <div class="product-card group">
+                    <div class="bg-[#F3F4F6] rounded-[32px] p-2 flex flex-col h-full border border-transparent hover:border-gray-200 hover:shadow-2xl transition-all duration-500">
+                        <div class="product-image-wrapper">
+                            <img src="${item.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
+                        
+                        <div class="p-6 flex-grow flex flex-col justify-between product-details">
                             <div>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">${item.category}</p>
-                                <h3 class="text-xl font-bold tracking-tight mb-2">${item.name}</h3>
+                                <h3 class="text-lg font-bold leading-tight mb-2">${item.name}</h3>
                             </div>
                             <div class="flex justify-between items-center mt-auto">
                                 <p class="text-sm font-bold">${item.price}</p>
@@ -87,9 +79,7 @@ function renderPage(page) {
             `;
         });
         
-        grid.style.opacity = '1'; // Animasi masuk
-        
-        // 4. UPDATE UI: Update tombol angka berdasarkan jumlah data yang difilter
+        grid.style.opacity = '1'; // Efek animasi masuk
         updatePaginationButtons(filteredItems.length);
     }, 300);
 }
@@ -97,8 +87,10 @@ function renderPage(page) {
 // 3. Update tampilan tombol angka
 function updatePaginationButtons() {
     const container = document.getElementById('pagination-numbers');
-    const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
     container.innerHTML = '';
+
+    if (totalPages <= 1) return;
 
     for (let i = 1; i <= totalPages; i++) {
         const isActive = i === currentPage;
@@ -150,6 +142,7 @@ function filterCategory(category) {
 
     renderPage(currentPage);
 }
+
 
 // Jalankan saat pertama kali dimuat
 loadProducts();
